@@ -127,7 +127,59 @@ namespace Carsharing
             CarDataGridView.ReadOnly = true;
             //Spalten automatisch anzeigen
             bindingSourceCar.ResetBindings(true);
+
+            loadRentCarDataGrid();
+            loadRentLenderDataGrid();
+
         }
+        private void loadRentCarDataGrid()
+        {
+            //RentCarDataGrid
+            //Binding Source füllen
+            BindingSource bindingsourceCarLender = new BindingSource();
+
+            bindingSourceCar.DataSource = this.dataImage.Tables["T_Car"];
+
+            
+            foreach (DataRow dr in this.dataImage.Tables["T_LenderCar"].Rows)
+            {
+                bindingSourceCar.Filter = Convert.ToString("P_licenseTag = '"+ dr.ItemArray.GetValue(0))+ "'";
+            }
+            //bindingSourceCar.Filter = "P_licenseTag = 'B003'";
+
+            RentCarDataGrid.DataSource = bindingSourceCar;
+            RentCarDataGrid.RowHeadersVisible = false;
+            //Spalten benennen
+            RentCarDataGrid.Columns[0].HeaderText = "Kennzeichen";
+            RentCarDataGrid.Columns[1].HeaderText = "Modell";
+            RentCarDataGrid.Columns[2].HeaderText = "Hersteller";
+            RentCarDataGrid.Columns[3].HeaderText = "Preis pro Tag";
+            RentCarDataGrid.Columns[4].Visible = false;
+            RentCarDataGrid.MultiSelect = false;
+            RentCarDataGrid.ReadOnly = true;
+            bindingSourceCar.ResetBindings(true);
+        }
+
+        private void loadRentLenderDataGrid()
+        {
+            //RentLenderDataGrid
+            //Binding Source füllen
+            bindingSourceLender.DataSource = this.dataImage.Tables["T_Lender"];
+            //LenderDataGrid.AutoGenerateColumns = false;
+            RentLenderDataGrid.DataSource = bindingSourceLender;
+            RentLenderDataGrid.RowHeadersVisible = false;
+            //Spalten benennen
+            RentLenderDataGrid.Columns[0].HeaderText = "Mitarbeiter ID";
+            RentLenderDataGrid.Columns[1].HeaderText = "Name";
+            RentLenderDataGrid.Columns[2].HeaderText = "Alter";
+            RentLenderDataGrid.Columns[3].HeaderText = "Adresse";
+            RentLenderDataGrid.MultiSelect = false;
+            RentLenderDataGrid.ReadOnly = true;
+            //Spalten automatisch anzeigen
+            bindingSourceLender.ResetBindings(true);
+        }
+
+
 
         private void btnLenderCreate_Click(object sender, EventArgs e)
         {
