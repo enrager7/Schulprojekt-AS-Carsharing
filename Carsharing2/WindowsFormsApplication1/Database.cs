@@ -267,8 +267,8 @@ namespace Carsharing
         //Auto erstellen
         public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay)
         {
-            //try
-            //{
+            try
+            {
                 command = new SQLiteCommand(this.connection);
                 command.CommandText = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay+"');'";
                 if (connection.State == ConnectionState.Closed)
@@ -276,11 +276,11 @@ namespace Carsharing
                 command.ExecuteNonQuery();
                 connection.Close();
                 command.Dispose();
-            //}
-            //catch (SQLiteException exception)
-            //{
-            //    throw exception;
-            //}
+            }
+            catch (SQLiteException exception)
+            {
+                throw exception;
+            }
         }
 
         //Auto löschen 
