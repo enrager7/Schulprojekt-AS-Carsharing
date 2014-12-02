@@ -270,7 +270,8 @@ namespace Carsharing
             try
             {
                 command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay+"');'";
+                command.CommandText = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','1');";//Branch No wird mit 1 eingefügt sonst wird der Wert NULL und die Datenbank lässt sich nicht mehr öffnen
+                //ToDo: Branch No muss dirch alle Schichten CarsharinSystem -> IDatabase etc. durchgereicht werden
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
                 command.ExecuteNonQuery();
@@ -288,7 +289,15 @@ namespace Carsharing
         {
             try
             {
-                //TODO: Artem
+                //TODO: Artem 
+                command = new SQLiteCommand(this.connection);
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                command.CommandText = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';"; //TODO: AND p_f_branchNo | und durchreichen der branchNo durch alle Schichten
+                command.ExecuteNonQuery();
+                connection.Close();
+                // Freigabe der Ressourcen.
+                command.Dispose();
             }
             catch (SQLiteException exception)
             {
