@@ -30,13 +30,12 @@ namespace Carsharing
         public void show()
         {   //Initialisiere Form Elemente
             InitializeComponent();
-
+            carsharinginstance = new CarsharingSystem(); //Testinstanz
             loadDatasets();
         }
         private void loadDatasets()
         {
             //Custom stuff
-            carsharinginstance = new CarsharingSystem(); //Testinstanz
             carsharinginstance.LoadData();//Lade Daten in's DataSet der Klasse Carsharing
             dataImage = this.carsharinginstance.GetDataSet();//Speichert das DataSet der Klasse Carsharing in einem eigenem DataSet
 
