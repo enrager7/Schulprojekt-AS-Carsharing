@@ -143,6 +143,7 @@
             this.btnDeleteCar.TabIndex = 16;
             this.btnDeleteCar.Text = "Löschen";
             this.btnDeleteCar.UseVisualStyleBackColor = true;
+            this.btnDeleteCar.Click += new System.EventHandler(this.btnDeleteCar_Click);
             // 
             // btnCreateCar
             // 
@@ -152,6 +153,7 @@
             this.btnCreateCar.TabIndex = 15;
             this.btnCreateCar.Text = "Erstellen";
             this.btnCreateCar.UseVisualStyleBackColor = true;
+            this.btnCreateCar.Click += new System.EventHandler(this.btnCreateCar_Click);
             // 
             // tbxPrice
             // 

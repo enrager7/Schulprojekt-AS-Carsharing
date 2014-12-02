@@ -26,7 +26,6 @@ namespace Carsharing
         private BindingSource bindingSourceLender = new BindingSource();
         private BindingSource bindingSourceCar = new BindingSource();
 
-
         public void show()
         {   //Initialisiere Form Elemente
             InitializeComponent();
@@ -92,6 +91,7 @@ namespace Carsharing
             BranchCbx.DisplayMember = "name";//Anzuzeigende Spalte...
             bindingSourceDataSetBranchBox.DataSource = this.dataImage.Tables["T_Carsharing"];//Binden der Tabelle an die BindingSource
             BranchCbx.DataSource = bindingSourceDataSetBranchBox; //Binden der BindingSource an die ComboBox
+
             bindingSourceDataSetBranchBox.ResetBindings(true); //Resette Bindings
 
             //LenderDataGrid
@@ -113,7 +113,8 @@ namespace Carsharing
             //CarDataGrid
             //Binding Source füllen
             bindingSourceCar.DataSource = this.dataImage.Tables["T_Car"];
-            //LenderDataGrid.AutoGenerateColumns = false;
+            //Filter der Car Bindingsource mit der aktuellen Branch No aus der Combobox
+            //bindingSourceCar.Filter = 
             CarDataGridView.DataSource = bindingSourceCar;
             CarDataGridView.RowHeadersVisible = false;
             //Spalten benennen
@@ -130,7 +131,6 @@ namespace Carsharing
 
         private void btnLenderCreate_Click(object sender, EventArgs e)
         {
-            
             if (String.IsNullOrEmpty(tbxName.Text))
             {
                 MessageBox.Show("Bitte Namen eintragen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -163,6 +163,52 @@ namespace Carsharing
             if (MessageBox.Show("Wollen Sie wirklich den Mieter mit der Nummer " + Convert.ToString(lenderID) + " löschen?", "Löschen bestätigen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
             {
                 carsharinginstance.RemoveLender(lenderID);
+                loadDatasets();
+            }
+        }
+
+        private void btnCreateCar_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(tbxLicenseTag.Text))
+            {
+                MessageBox.Show("Bitte Kennzeichen eintragen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (String.IsNullOrEmpty(tbxManufacturer.Text))
+            {
+                MessageBox.Show("Bitte Hersteller angeben." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (String.IsNullOrEmpty(tbxModel.Text))
+            {
+                MessageBox.Show("Bitte Model eintragen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (String.IsNullOrEmpty(tbxPrice.Text))
+            {
+                MessageBox.Show("Bitte Preis eintragen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            carsharinginstance.CreateCar(tbxLicenseTag.Text, tbxModel.Text, tbxManufacturer.Text, Convert.ToDecimal(tbxPrice.Text));
+            tbxLicenseTag.Text = "";
+            tbxModel.Text = "";
+            tbxManufacturer.Text = "";
+            tbxPrice.Text = "";
+            loadDatasets();
+
+        }
+
+        private void btnDeleteCar_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = CarDataGridView.CurrentRow;
+            string carID = row.Cells[0].Value.ToString();
+            if (MessageBox.Show("Wollen Sie wirklich das Auto mit dem Kennzeichen " + carID + " löschen?", "Löschen bestätigen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                carsharinginstance.RemoveCar(carID);
                 loadDatasets();
             }
         }
