@@ -25,6 +25,7 @@ namespace Carsharing
         public DataSet dataImage;
         private BindingSource bindingSourceLender = new BindingSource();
         private BindingSource bindingSourceCar = new BindingSource();
+        private BindingSource bsLenderCar = new BindingSource();
 
         public void show()
         {   //Initialisiere Form Elemente
@@ -128,24 +129,33 @@ namespace Carsharing
             //Spalten automatisch anzeigen
             bindingSourceCar.ResetBindings(true);
 
-            loadRentCarDataGrid();
+            //LenderCarDataGrid
+            //Binding Source füllen
+            bsLenderCar.DataSource = this.dataImage.Tables["T_LenderCar"];
+            LenderCarDataGrid.DataSource = bsLenderCar;
+            LenderCarDataGrid.RowHeadersVisible = false;
+            //Spalten benennen
+            LenderCarDataGrid.Columns[0].HeaderText = "Mieter ID";
+            LenderCarDataGrid.Columns[1].HeaderText = "Auto Kennzeichen";
+            CarDataGridView.MultiSelect = false;
+            CarDataGridView.ReadOnly = true;
+            //Spalten automatisch anzeigen
+            bsLenderCar.ResetBindings(true);
+
+
             loadRentLenderDataGrid();
+            loadRentCarDataGrid();
 
         }
         private void loadRentCarDataGrid()
         {
             //RentCarDataGrid
             //Binding Source füllen
-            BindingSource bindingsourceCarLender = new BindingSource();
+            BindingSource bsCarLender = new BindingSource();
+            BindingSource bsRentedCars = new BindingSource();
+            //Filterung der Tabelle auf den aktuellen Mieter, sodass alle ausgeliehenen Autos in der bs sind
 
-            bindingSourceCar.DataSource = this.dataImage.Tables["T_Car"];
-
-            
-            foreach (DataRow dr in this.dataImage.Tables["T_LenderCar"].Rows)
-            {
-                bindingSourceCar.Filter = Convert.ToString("P_licenseTag = '"+ dr.ItemArray.GetValue(0))+ "'";
-            }
-            //bindingSourceCar.Filter = "P_licenseTag = 'B003'";
+            bsRentedCars.DataSource = this.dataImage.Tables["T_Car"];
 
             RentCarDataGrid.DataSource = bindingSourceCar;
             RentCarDataGrid.RowHeadersVisible = false;
@@ -263,6 +273,28 @@ namespace Carsharing
                 carsharinginstance.RemoveCar(carID);
                 loadDatasets();
             }
+        }
+
+        private void RentBtn_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow lenderRow = RentLenderDataGrid.CurrentRow;
+            int lenderID = Convert.ToInt32(lenderRow.Cells[0].Value);
+
+            DataGridViewRow carRow = RentCarDataGrid.CurrentRow;
+            string licenseTag = carRow.Cells[1].Value.ToString();
+
+            carsharinginstance.LentCar(lenderID, licenseTag);
+            loadDatasets();
+        }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow lendercarRow = LenderCarDataGrid.CurrentRow;
+            int lenderID = Convert.ToInt32(lendercarRow.Cells[0].Value);
+            string licenseTag = lendercarRow.Cells[1].Value.ToString();
+
+            carsharinginstance.ReturnCar(lenderID, licenseTag);
+            loadDatasets();
         }
     }
 }

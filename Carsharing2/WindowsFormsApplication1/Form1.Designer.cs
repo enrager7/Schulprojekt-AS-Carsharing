@@ -54,6 +54,8 @@
             this.AdressLbl = new System.Windows.Forms.Label();
             this.NameLbl = new System.Windows.Forms.Label();
             this.RentPage = new System.Windows.Forms.TabPage();
+            this.RentCarDataGrid = new System.Windows.Forms.DataGridView();
+            this.RentLenderDataGrid = new System.Windows.Forms.DataGridView();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.CarLbl = new System.Windows.Forms.Label();
             this.LenderLbl = new System.Windows.Forms.Label();
@@ -62,8 +64,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Branchlbl = new System.Windows.Forms.Label();
             this.BranchCbx = new System.Windows.Forms.ComboBox();
-            this.RentLenderDataGrid = new System.Windows.Forms.DataGridView();
-            this.RentCarDataGrid = new System.Windows.Forms.DataGridView();
+            this.LenderCarDataGrid = new System.Windows.Forms.DataGridView();
             this.Container.SuspendLayout();
             this.DataPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -71,10 +72,11 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LenderDataGrid)).BeginInit();
             this.RentPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RentCarDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RentLenderDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDataSetBranchBox)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RentLenderDataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RentCarDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LenderCarDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // Container
@@ -333,6 +335,7 @@
             // 
             // RentPage
             // 
+            this.RentPage.Controls.Add(this.LenderCarDataGrid);
             this.RentPage.Controls.Add(this.RentCarDataGrid);
             this.RentPage.Controls.Add(this.RentLenderDataGrid);
             this.RentPage.Controls.Add(this.DeleteBtn);
@@ -346,6 +349,46 @@
             this.RentPage.Text = "Vermietung";
             this.RentPage.UseVisualStyleBackColor = true;
             // 
+            // RentCarDataGrid
+            // 
+            this.RentCarDataGrid.AllowUserToAddRows = false;
+            this.RentCarDataGrid.AllowUserToDeleteRows = false;
+            this.RentCarDataGrid.AllowUserToOrderColumns = true;
+            this.RentCarDataGrid.AllowUserToResizeColumns = false;
+            this.RentCarDataGrid.AllowUserToResizeRows = false;
+            this.RentCarDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.RentCarDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.RentCarDataGrid.BackgroundColor = System.Drawing.Color.White;
+            this.RentCarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RentCarDataGrid.Location = new System.Drawing.Point(443, 16);
+            this.RentCarDataGrid.Name = "RentCarDataGrid";
+            this.RentCarDataGrid.ReadOnly = true;
+            this.RentCarDataGrid.RowHeadersVisible = false;
+            this.RentCarDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.RentCarDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.RentCarDataGrid.Size = new System.Drawing.Size(426, 94);
+            this.RentCarDataGrid.TabIndex = 18;
+            // 
+            // RentLenderDataGrid
+            // 
+            this.RentLenderDataGrid.AllowUserToAddRows = false;
+            this.RentLenderDataGrid.AllowUserToDeleteRows = false;
+            this.RentLenderDataGrid.AllowUserToOrderColumns = true;
+            this.RentLenderDataGrid.AllowUserToResizeColumns = false;
+            this.RentLenderDataGrid.AllowUserToResizeRows = false;
+            this.RentLenderDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.RentLenderDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.RentLenderDataGrid.BackgroundColor = System.Drawing.Color.White;
+            this.RentLenderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RentLenderDataGrid.Location = new System.Drawing.Point(12, 16);
+            this.RentLenderDataGrid.Name = "RentLenderDataGrid";
+            this.RentLenderDataGrid.ReadOnly = true;
+            this.RentLenderDataGrid.RowHeadersVisible = false;
+            this.RentLenderDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.RentLenderDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.RentLenderDataGrid.Size = new System.Drawing.Size(412, 94);
+            this.RentLenderDataGrid.TabIndex = 10;
+            // 
             // DeleteBtn
             // 
             this.DeleteBtn.Location = new System.Drawing.Point(595, 261);
@@ -354,11 +397,12 @@
             this.DeleteBtn.TabIndex = 6;
             this.DeleteBtn.Text = "Zurückgeben";
             this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
             // CarLbl
             // 
             this.CarLbl.AutoSize = true;
-            this.CarLbl.Location = new System.Drawing.Point(659, 34);
+            this.CarLbl.Location = new System.Drawing.Point(659, 0);
             this.CarLbl.Name = "CarLbl";
             this.CarLbl.Size = new System.Drawing.Size(29, 13);
             this.CarLbl.TabIndex = 2;
@@ -367,7 +411,7 @@
             // LenderLbl
             // 
             this.LenderLbl.AutoSize = true;
-            this.LenderLbl.Location = new System.Drawing.Point(196, 34);
+            this.LenderLbl.Location = new System.Drawing.Point(199, 0);
             this.LenderLbl.Name = "LenderLbl";
             this.LenderLbl.Size = new System.Drawing.Size(36, 13);
             this.LenderLbl.TabIndex = 1;
@@ -382,6 +426,7 @@
             this.RentBtn.TabIndex = 0;
             this.RentBtn.Text = "Vermieten";
             this.RentBtn.UseVisualStyleBackColor = true;
+            this.RentBtn.Click += new System.EventHandler(this.RentBtn_Click);
             // 
             // groupBox1
             // 
@@ -413,45 +458,25 @@
             this.BranchCbx.Size = new System.Drawing.Size(236, 21);
             this.BranchCbx.TabIndex = 0;
             // 
-            // RentLenderDataGrid
+            // LenderCarDataGrid
             // 
-            this.RentLenderDataGrid.AllowUserToAddRows = false;
-            this.RentLenderDataGrid.AllowUserToDeleteRows = false;
-            this.RentLenderDataGrid.AllowUserToOrderColumns = true;
-            this.RentLenderDataGrid.AllowUserToResizeColumns = false;
-            this.RentLenderDataGrid.AllowUserToResizeRows = false;
-            this.RentLenderDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.RentLenderDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.RentLenderDataGrid.BackgroundColor = System.Drawing.Color.White;
-            this.RentLenderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RentLenderDataGrid.Location = new System.Drawing.Point(12, 50);
-            this.RentLenderDataGrid.Name = "RentLenderDataGrid";
-            this.RentLenderDataGrid.ReadOnly = true;
-            this.RentLenderDataGrid.RowHeadersVisible = false;
-            this.RentLenderDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.RentLenderDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RentLenderDataGrid.Size = new System.Drawing.Size(412, 201);
-            this.RentLenderDataGrid.TabIndex = 10;
-            // 
-            // RentCarDataGrid
-            // 
-            this.RentCarDataGrid.AllowUserToAddRows = false;
-            this.RentCarDataGrid.AllowUserToDeleteRows = false;
-            this.RentCarDataGrid.AllowUserToOrderColumns = true;
-            this.RentCarDataGrid.AllowUserToResizeColumns = false;
-            this.RentCarDataGrid.AllowUserToResizeRows = false;
-            this.RentCarDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.RentCarDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.RentCarDataGrid.BackgroundColor = System.Drawing.Color.White;
-            this.RentCarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RentCarDataGrid.Location = new System.Drawing.Point(443, 50);
-            this.RentCarDataGrid.Name = "RentCarDataGrid";
-            this.RentCarDataGrid.ReadOnly = true;
-            this.RentCarDataGrid.RowHeadersVisible = false;
-            this.RentCarDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.RentCarDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RentCarDataGrid.Size = new System.Drawing.Size(426, 201);
-            this.RentCarDataGrid.TabIndex = 18;
+            this.LenderCarDataGrid.AllowUserToAddRows = false;
+            this.LenderCarDataGrid.AllowUserToDeleteRows = false;
+            this.LenderCarDataGrid.AllowUserToOrderColumns = true;
+            this.LenderCarDataGrid.AllowUserToResizeColumns = false;
+            this.LenderCarDataGrid.AllowUserToResizeRows = false;
+            this.LenderCarDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.LenderCarDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.LenderCarDataGrid.BackgroundColor = System.Drawing.Color.White;
+            this.LenderCarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LenderCarDataGrid.Location = new System.Drawing.Point(202, 134);
+            this.LenderCarDataGrid.Name = "LenderCarDataGrid";
+            this.LenderCarDataGrid.ReadOnly = true;
+            this.LenderCarDataGrid.RowHeadersVisible = false;
+            this.LenderCarDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.LenderCarDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.LenderCarDataGrid.Size = new System.Drawing.Size(486, 94);
+            this.LenderCarDataGrid.TabIndex = 19;
             // 
             // Form1
             // 
@@ -473,11 +498,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.LenderDataGrid)).EndInit();
             this.RentPage.ResumeLayout(false);
             this.RentPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RentCarDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RentLenderDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDataSetBranchBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RentLenderDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RentCarDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LenderCarDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -519,6 +545,7 @@
         private System.Windows.Forms.BindingSource bindingSourceDataSetBranchBox;
         private System.Windows.Forms.DataGridView RentLenderDataGrid;
         private System.Windows.Forms.DataGridView RentCarDataGrid;
+        private System.Windows.Forms.DataGridView LenderCarDataGrid;
     }
 }
 
