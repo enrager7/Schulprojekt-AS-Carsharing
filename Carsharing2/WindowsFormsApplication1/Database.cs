@@ -265,13 +265,12 @@ namespace Carsharing
         }
 
         //Auto erstellen
-        public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay)
+        public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay, int assignedBranchNo)
         {
             try
             {
                 command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','1');";//Branch No wird mit 1 eingefügt sonst wird der Wert NULL und die Datenbank lässt sich nicht mehr öffnen
-                //ToDo: Branch No muss dirch alle Schichten CarsharinSystem -> IDatabase etc. durchgereicht werden
+                command.CommandText = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','"+ assignedBranchNo + "');";
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
                 command.ExecuteNonQuery();
@@ -293,7 +292,7 @@ namespace Carsharing
                 command = new SQLiteCommand(this.connection);
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                command.CommandText = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';"; //TODO: AND p_f_branchNo | und durchreichen der branchNo durch alle Schichten
+                command.CommandText = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';";
                 command.ExecuteNonQuery();
                 connection.Close();
                 // Freigabe der Ressourcen.

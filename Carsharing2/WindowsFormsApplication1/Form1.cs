@@ -245,7 +245,7 @@ namespace Carsharing
                 return;
             }
 
-            carsharinginstance.CreateCar(tbxLicenseTag.Text, tbxModel.Text, tbxManufacturer.Text, Convert.ToDecimal(tbxPrice.Text));
+            carsharinginstance.CreateCar(tbxLicenseTag.Text, tbxModel.Text, tbxManufacturer.Text, Convert.ToDecimal(tbxPrice.Text), 1);
             tbxLicenseTag.Text = "";
             tbxModel.Text = "";
             tbxManufacturer.Text = "";

@@ -19,7 +19,7 @@ namespace Carsharing
 
         void ShowLender(int lenderID);
 
-        void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay);
+        void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay, int assignedBranchNo);
 
         void RemoveCar(string licenseTag);
 

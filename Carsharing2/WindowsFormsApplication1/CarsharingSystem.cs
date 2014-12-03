@@ -152,9 +152,9 @@ namespace Carsharing
         }
 
         //Auto anlegen
-        public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay)
+        public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay, int assignedBranchNo)
         {
-            this.persistence.CreateCar(licenseTag, model, manufacturer, pricePerDay);
+            this.persistence.CreateCar(licenseTag, model, manufacturer, pricePerDay, assignedBranchNo);
             DataChanged = true;
         }
 
