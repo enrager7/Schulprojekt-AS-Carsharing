@@ -134,20 +134,9 @@ namespace Carsharing
 
             if (GetRentedCars(lenderId).Contains(licenseTag))
             {
-                try
-                {
-                    command = new SQLiteCommand(this.connection);
-                    command.CommandText = "DELETE FROM T_LenderCar WHERE p_f_lenderId = " + lenderId + " AND p_f_licenseTag = " + "'" + licenseTag + "'";
-                    if (connection.State == ConnectionState.Closed)
-                        connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    command.Dispose();
-                }
-                catch (SQLiteException exception)
-                {
-                    throw exception;
-                }
+				//TODO - Carsharing Niederlassung anlegen (Datensatz in die Datenbank schreiben
+				String SqlString = "DELETE FROM T_LenderCar WHERE p_f_lenderId = " + lenderId + " AND p_f_licenseTag = " + "'" + licenseTag + "'";
+				this.executeSqlString(SqlString);
             }
             else
             {
@@ -211,23 +200,9 @@ namespace Carsharing
         //Auto löschen 
         public void RemoveCar(string licenseTag)
         {
-            try
-            {
-                //TODO: Artem 
-                command = new SQLiteCommand(this.connection);
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.CommandText = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';";
-                command.ExecuteNonQuery();
-                connection.Close();
-                // Freigabe der Ressourcen.
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
-
+			//TODO: Artem 
+			String SqlString = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';";
+			this.executeSqlString(SqlString);
         }
 
         //Ausgeliehene Autos pro Mieter - gibt eine String-Liste der jeweiligen Nummernschilder aus 
