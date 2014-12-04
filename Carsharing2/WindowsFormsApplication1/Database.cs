@@ -246,7 +246,7 @@ namespace Carsharing
                 throw new Exception("Der Benutzer hat noch Autos ausgeliehen und kann deswegen nicht gelöscht werden.");
         }
 
-        //Mieter anzeigen
+        //Mieter anzeigen - wird das überhaupt genutzt?
         public void ShowLender(int lenderID)
         {
             try

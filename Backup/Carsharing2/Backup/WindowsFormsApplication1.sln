@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carsharing", "WindowsFormsApplication1\Carsharing.csproj", "{1D22B660-1B01-4D48-BC45-7F0C3A3E47C1}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://enrager.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WindowsFormsApplication1\\Carsharing.csproj
+		SccProjectName1 = WindowsFormsApplication1
+		SccLocalPath1 = WindowsFormsApplication1
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D22B660-1B01-4D48-BC45-7F0C3A3E47C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D22B660-1B01-4D48-BC45-7F0C3A3E47C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D22B660-1B01-4D48-BC45-7F0C3A3E47C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D22B660-1B01-4D48-BC45-7F0C3A3E47C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

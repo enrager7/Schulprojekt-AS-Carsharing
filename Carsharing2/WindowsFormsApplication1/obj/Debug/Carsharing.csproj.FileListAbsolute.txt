@@ -71,3 +71,4 @@ C:\Users\Markus\Documents\GitHub\Schulprojekt-AS-Carsharing\Carsharing2\WindowsF
 C:\Users\Markus\Documents\GitHub\Schulprojekt-AS-Carsharing\Carsharing2\WindowsFormsApplication1\obj\Debug\Carsharing.csproj.GenerateResource.Cache
 C:\Users\Markus\Documents\GitHub\Schulprojekt-AS-Carsharing\Carsharing2\WindowsFormsApplication1\obj\Debug\Carsharing.exe
 C:\Users\Markus\Documents\GitHub\Schulprojekt-AS-Carsharing\Carsharing2\WindowsFormsApplication1\obj\Debug\Carsharing.pdb
+C:\Users\A.Efimov\Desktop\GitHub\Schulprojekt-AS-Carsharing\Carsharing2\WindowsFormsApplication1\obj\Debug\Carsharing.csprojResolveAssemblyReference.cache
