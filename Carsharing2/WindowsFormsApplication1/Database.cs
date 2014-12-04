@@ -99,82 +99,26 @@ namespace Carsharing
         public void InsertLending(int lenderId, string licenseTag) //Done but not tested
         {
             /* Tests und weitere Einschränkungen nötig:
-             * 
-             *      Wann darf ein Fahrzeug ausgeliehen werden?
-             *      Dürfen mehrere Fahrzeuge gleichzeitig ausgeliehen werden?
-             * 
-             * Aktuell wird ohne wenn und aber der Datensatz eingefügt
-             * 
-             * Try Catch SQLiteException einbauen?
              */
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_LenderCar (p_f_lenderId, p_f_licenseTag) VALUES('" + lenderId + "','" + licenseTag + "')";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                //Freigabe der Ressourcen
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                exception = new SQLiteException("Das Fahrzeug mit dem Nummernschild " + "'" + licenseTag + "'" + " ist bereits an Nutzer mit ID " + "'" + lenderId + "'" + "ausgeliehen");
-                MessageBox.Show(exception.Message);
-            }
+            string Sqltext = "INSERT INTO T_LenderCar (p_f_lenderId, p_f_licenseTag) VALUES('" + lenderId + "','" + licenseTag + "')";
+            this.executeSqlString(Sqltext);
         }
 
         //Ausleihe Löschen
         public void RemoveLending(int lenderId, string licenseTag)  //DONE but not tested
         {
             /* Wann darf ein Mietverhältnis aufgehoben / gelöscht werden?
-             *
-             *
              */
 
-            if (GetRentedCars(lenderId).Contains(licenseTag))
-            {
-                try
-                {
-                    command = new SQLiteCommand(this.connection);
-                    command.CommandText = "DELETE FROM T_LenderCar WHERE p_f_lenderId = " + lenderId + " AND p_f_licenseTag = " + "'" + licenseTag + "'";
-                    if (connection.State == ConnectionState.Closed)
-                        connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    command.Dispose();
-                }
-                catch (SQLiteException exception)
-                {
-                    throw exception;
-                }
-            }
-            else
-            {
-
-                throw new Exception("Auto konnte nicht zurueckgegeben werden");
-            }
+            string Sqltext = "DELETE FROM T_LenderCar WHERE p_f_lenderId = " + lenderId + " AND p_f_licenseTag = " + "'" + licenseTag + "'";
+            this.executeSqlString(Sqltext);
         }
 
         //Niederlassun hinzufügen
         public void CreateBranch(string name, string adress)
         {
-            //TODO - Carsharing Niederlassung anlegen (Datensatz in die Datenbank schreiben
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_Carsharing (name, adress) VALUES('" + name + "','" + adress + "');";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+            string Sqltext = "INSERT INTO T_Carsharing (name, adress) VALUES('" + name + "','" + adress + "');";
+            this.executeSqlString(Sqltext);
         }
 
         //Niederlassung entfernen
@@ -182,130 +126,49 @@ namespace Carsharing
         {
             //TODO - Carsharing Niederlassung entfernen (Datensatz aus der Datenbank löschen)
             //Prüfen ob Fahrzeuge der Niederlassung zugewiesen sind
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "DELETE FROM T_Carsharing WHERE p_branchNo = " + branchNo + ");";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+            string Sqltext = "DELETE FROM T_Carsharing WHERE p_branchNo = " + branchNo + ");";
+            this.executeSqlString(Sqltext);
         }
 
         //Mieter anlegen   
         public void CreateLender(string name, int age, string adress)   //DONE
         {
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                // Einfügen eines Datensatzes
-                command.CommandText = "INSERT INTO T_Lender (name, age, adress) VALUES('" + name + "','" + age + "','" + adress + "');";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                // Freigabe der Ressourcen.
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+            string Sqltext = "INSERT INTO T_Lender (name, age, adress) VALUES('" + name + "','" + age + "','" + adress + "');";
+            this.executeSqlString(Sqltext);
         }
 
         //Mieter löschen
         public void RemoveLender(int lenderId) //DONE
         {
-
             List<string> licenseTags = GetRentedCars(lenderId);
             if (licenseTags.Count < 1)
             {
-                try
-                {
-                    command = new SQLiteCommand(this.connection);
-                    if (connection.State == ConnectionState.Closed)
-                        connection.Open();
-                    command.CommandText = "DELETE FROM T_Lender WHERE p_lenderId = " + lenderId.ToString() + ";";
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    // Freigabe der Ressourcen.
-                    command.Dispose();
-                }
-                catch (SQLiteException exception)
-                {
-                    throw exception;
-                }
+                string Sqltext = "DELETE FROM T_Lender WHERE p_lenderId = " + lenderId.ToString() + ";";
+                this.executeSqlString(Sqltext);
             }
             else
                 throw new Exception("Der Benutzer hat noch Autos ausgeliehen und kann deswegen nicht gelöscht werden.");
         }
-
         //Mieter anzeigen - wird das überhaupt genutzt?
         public void ShowLender(int lenderID)
         {
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "SELECT * FROM T_Lender WHERE p_lenderId = " + lenderID + ";";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+            string Sqltext = "SELECT * FROM T_Lender WHERE p_lenderId = " + lenderID + ";";
+            this.executeSqlString(Sqltext);
         }
 
         //Auto erstellen
         public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay, int assignedBranchNo)
         {
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','"+ assignedBranchNo + "');";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+            string Sqltext = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','" + assignedBranchNo + "');";
+            this.executeSqlString(Sqltext);
         }
 
         //Auto löschen 
         public void RemoveCar(string licenseTag)
         {
-            try
-            {
-                //TODO: Artem 
-                command = new SQLiteCommand(this.connection);
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.CommandText = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';";
-                command.ExecuteNonQuery();
-                connection.Close();
-                // Freigabe der Ressourcen.
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
-
+            string Sqltext = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';";
+            this.executeSqlString(Sqltext);
         }
-
         //Ausgeliehene Autos pro Mieter - gibt eine String-Liste der jeweiligen Nummernschilder aus 
         public List<string> GetRentedCars(int lenderID)//DONE
         {
@@ -330,6 +193,25 @@ namespace Carsharing
 
                 //Rückgabe der Liste
                 return licenseTagList;
+            }
+            catch (SQLiteException exception)
+            {
+                throw exception;
+            }
+        }
+
+        // das hier als vorlage fuer die anderen benutzen
+        public void executeSqlString(string SqlString)
+        {
+            try
+            {
+                command = new SQLiteCommand(this.connection);
+                command.CommandText = SqlString;
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                command.Dispose();
             }
             catch (SQLiteException exception)
             {
