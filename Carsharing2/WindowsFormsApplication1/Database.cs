@@ -151,12 +151,11 @@ namespace Carsharing
             }
             else
             {
-
                 throw new Exception("Auto konnte nicht zurueckgegeben werden");
             }
         }
 
-        //Niederlassun hinzufügen
+        //Niederlassung hinzufügen
         public void CreateBranch(string name, string adress)
         {
 			//TODO - Carsharing Niederlassung anlegen (Datensatz in die Datenbank schreiben
@@ -197,39 +196,16 @@ namespace Carsharing
         //Mieter anzeigen
         public void ShowLender(int lenderID)
         {
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "SELECT * FROM T_Lender WHERE p_lenderId = " + lenderID + ";";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+			String SqlString = "SELECT * FROM T_Lender WHERE p_lenderId = " + lenderID + ";";
+			this.executeSqlString(SqlString);
         }
 
         //Auto erstellen
         public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay, int assignedBranchNo)
         {
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','"+ assignedBranchNo + "');";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+			String SqlString ="INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) " +
+			"VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','"+ assignedBranchNo + "');";
+			this.executeSqlString(SqlString);
         }
 
         //Auto löschen 
