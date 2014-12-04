@@ -117,16 +117,16 @@ namespace Carsharing
         }
 
         //Ausleihen
-        public void LentCar(Lender lender, Car car)
+        public void LentCar(int lenderID, string licenseTag)
         {
-            this.persistence.InsertLending(lender.GetLenderId(), car.GetLicenseTag());
+            this.persistence.InsertLending(lenderID, licenseTag);
             DataChanged = true;
         }
 
         //Löschen
-        public void ReturnCar(Lender lender, Car car)
+        public void ReturnCar(int lenderID, string licenseTag)
         {
-            this.persistence.RemoveLending(lender.GetLenderId(), car.GetLicenseTag());
+            this.persistence.RemoveLending(lenderID,licenseTag);
             DataChanged = true;
         }
 

@@ -110,7 +110,7 @@ namespace Carsharing
             try
             {
                 command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_LenderCar (lenderId, licenseTag) VALUES('" + lenderId + "','" + licenseTag + "')";
+                command.CommandText = "INSERT INTO T_LenderCar (p_f_lenderId, p_f_licenseTag) VALUES('" + lenderId + "','" + licenseTag + "')";
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
                 command.ExecuteNonQuery();
