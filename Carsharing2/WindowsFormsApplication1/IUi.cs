@@ -8,6 +8,6 @@ namespace Carsharing
 {
     interface IUi
     {
-        void show();
+        void show(string savetype);
     }
 }

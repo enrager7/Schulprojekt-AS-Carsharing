@@ -8,10 +8,10 @@ namespace Carsharing
 {
     class Tui : IUi
     {
-        public void show()
+        public void show(string savetype)
         {
             string returnvalue;
-            CarsharingSystem carsharing = new CarsharingSystem();
+            CarsharingSystem carsharing = new CarsharingSystem(savetype);
 
             Console.WriteLine("*************************************");
             Console.WriteLine("Autovermietung");

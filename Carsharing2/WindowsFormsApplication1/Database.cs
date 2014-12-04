@@ -306,7 +306,7 @@ namespace Carsharing
 
         }
 
-        //Ausgeliehene Autos pro Mieter 
+        //Ausgeliehene Autos pro Mieter - gibt eine String-Liste der jeweiligen Nummernschilder aus 
         public List<string> GetRentedCars(int lenderID)//DONE
         {
             try

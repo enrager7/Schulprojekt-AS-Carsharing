@@ -15,7 +15,7 @@ namespace Carsharing
 
         public SqlDatabase(string databaseName)
         {
-        //SQLLite Datenbank
+        // SQLLite Datenbank
         dataSource = "databaseName";
         connection = new SQLiteConnection();
 

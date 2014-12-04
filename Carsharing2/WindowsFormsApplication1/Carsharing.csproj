@@ -91,6 +91,8 @@
     <Compile Include="Lender.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializedDatabase.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="SqlDatabase.cs" />
     <Compile Include="Tui.cs" />
     <EmbeddedResource Include="Form1.resx">

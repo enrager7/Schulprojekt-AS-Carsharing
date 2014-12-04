@@ -27,10 +27,10 @@ namespace Carsharing
         private BindingSource bindingSourceCar = new BindingSource();
         private BindingSource bsLenderCar = new BindingSource();
 
-        public void show()
+        public void show(string savetype)
         {   //Initialisiere Form Elemente
             InitializeComponent();
-            carsharinginstance = new CarsharingSystem(); //Testinstanz
+            carsharinginstance = new CarsharingSystem(savetype); //Testinstanz
             loadDatasets();
         }
         private void loadDatasets()

@@ -30,7 +30,7 @@ namespace Carsharing
         public List<Branch> BranchList { get { return this.branchlist; } } //Nur Lesezugriff
         public List<Car> CarList { get { return this.carlist; } }
         public List<Lender> LenderList { get { return this.lenderlist; } }
-        public CarsharingSystem()
+        public CarsharingSystem(string savetype)
         {
             //Instanziere der benötigten Listen
             this.dataChanged = false;
@@ -38,7 +38,19 @@ namespace Carsharing
             this.carlist = new List<Car>();
             this.lenderlist = new List<Lender>();
             //Instanziere Datenbankanbindung
-            this.persistence = new Database("Carsharing.db");
+            if (savetype == "sqlite")
+                this.persistence = new Database("Carsharing.db");
+            else 
+            {
+                if (savetype == "serializer")
+                {
+                    this.persistence = new SerializedDatabase();
+                }
+                else
+                {
+                    throw new Exception("Savetype nicht festgelegt!");
+                }
+            }
             //Instanzierung der Klassen in Objekte
             CreateInstances();
         }
