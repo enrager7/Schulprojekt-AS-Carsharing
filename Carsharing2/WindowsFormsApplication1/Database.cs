@@ -215,7 +215,7 @@ namespace Carsharing
             }
             catch (SQLiteException exception)
             {
-                throw exception;
+                MessageBox.Show(exception.Message);
             }
         }
     }
