@@ -26,15 +26,14 @@ namespace Carsharing
             this.command = new SQLiteCommand(this.connection);
 
             // Erstellen der Tabelle, sofern diese noch nicht existiert.
-            try
-            {
+            try {
                 this.command.CommandText = "CREATE TABLE IF NOT EXISTS T_Carsharing (p_branchNo INTEGER PRIMARY KEY, name VARCHAR(50), adress VARCHAR(200)); CREATE TABLE IF NOT EXISTS T_LenderCar (p_f_lenderId INTEGER NOT NULL, p_f_licenseTag VARCHAR(8) NOT NULL, PRIMARY KEY (p_f_lenderId, p_f_licenseTag) FOREIGN KEY (p_f_lenderId) REFERENCES T_Lender (p_lenderId) ON UPDATE CASCADE ON DELETE NO ACTION, FOREIGN KEY (p_f_licenseTag) REFERENCES T_Car (P_licenseTag) ON UPDATE CASCADE ON DELETE NO ACTION ); CREATE TABLE IF NOT EXISTS T_Car (p_licenseTag VARCHAR(8) NOT NULL PRIMARY KEY, model VARCHAR(200), manufacturer VARCHAR(200), priceperDay DECIMAL, p_f_branchNo INTEGER DEFAULT NULL, FOREIGN KEY (p_f_branchNo) REFERENCES T_Carsharing (p_branchNo) ON UPDATE CASCADE ON DELETE SET NULL );  CREATE TABLE IF NOT EXISTS T_Lender (p_lenderId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name VARCHAR(50), age INTEGER, adress VARCHAR(200));";
                 this.command.ExecuteNonQuery();
             }
-            catch (SQLiteException exception)
-            {
+            catch (SQLiteException exception) {
                 throw exception;
             }
+
             //Lade Daten aus der Datenbank
             LoadData();
             //Instanzierung der Klassen anhand der Einträge in der Datenbank
@@ -160,63 +159,25 @@ namespace Carsharing
         //Niederlassun hinzufügen
         public void CreateBranch(string name, string adress)
         {
-            //TODO - Carsharing Niederlassung anlegen (Datensatz in die Datenbank schreiben
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "INSERT INTO T_Carsharing (name, adress) VALUES('" + name + "','" + adress + "');";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+			//TODO - Carsharing Niederlassung anlegen (Datensatz in die Datenbank schreiben
+			String SqlString = "INSERT INTO T_Carsharing (name, adress) VALUES('" + name + "','" + adress + "');";
+			this.executeSqlString(SqlString);
         }
-
+		
         //Niederlassung entfernen
         public void RemoveBranch(int branchNo)
         {
             //TODO - Carsharing Niederlassung entfernen (Datensatz aus der Datenbank löschen)
             //Prüfen ob Fahrzeuge der Niederlassung zugewiesen sind
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                command.CommandText = "DELETE FROM T_Carsharing WHERE p_branchNo = " + branchNo + ");";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+			String SqlString = "DELETE FROM T_Carsharing WHERE p_branchNo = " + branchNo + ");";
+			this.executeSqlString(SqlString);
         }
 
         //Mieter anlegen   
         public void CreateLender(string name, int age, string adress)   //DONE
         {
-            try
-            {
-                command = new SQLiteCommand(this.connection);
-                // Einfügen eines Datensatzes
-                command.CommandText = "INSERT INTO T_Lender (name, age, adress) VALUES('" + name + "','" + age + "','" + adress + "');";
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                // Freigabe der Ressourcen.
-                command.Dispose();
-            }
-            catch (SQLiteException exception)
-            {
-                throw exception;
-            }
+			String SqlString = "INSERT INTO T_Lender (name, age, adress) VALUES('" + name + "','" + age + "','" + adress + "');";
+			this.executeSqlString(SqlString);
         }
 
         //Mieter löschen
@@ -226,21 +187,8 @@ namespace Carsharing
             List<string> licenseTags = GetRentedCars(lenderId);
             if (licenseTags.Count < 1)
             {
-                try
-                {
-                    command = new SQLiteCommand(this.connection);
-                    if (connection.State == ConnectionState.Closed)
-                        connection.Open();
-                    command.CommandText = "DELETE FROM T_Lender WHERE p_lenderId = " + lenderId.ToString() + ";";
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    // Freigabe der Ressourcen.
-                    command.Dispose();
-                }
-                catch (SQLiteException exception)
-                {
-                    throw exception;
-                }
+				String SqlString = "DELETE FROM T_Lender WHERE p_lenderId = " + lenderId.ToString() + ";";
+				this.executeSqlString(SqlString);
             }
             else
                 throw new Exception("Der Benutzer hat noch Autos ausgeliehen und kann deswegen nicht gelöscht werden.");
@@ -336,5 +284,23 @@ namespace Carsharing
                 throw exception;
             }
         }
+
+		// das hier als vorlage fuer die anderen benutzen
+		public void executeSqlString (string SqlString)
+		{
+			try {
+				command = new SQLiteCommand (this.connection);
+				command.CommandText = sql;
+				if (connection.State == ConnectionState.Closed)
+					connection.Open ();
+				command.ExecuteNonQuery ();
+				connection.Close ();
+				command.Dispose ();
+			}
+			catch (SQLiteException exception) {
+				throw exception;
+			}
+		}
+
     }
 }
