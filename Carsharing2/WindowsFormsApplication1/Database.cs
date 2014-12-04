@@ -120,7 +120,8 @@ namespace Carsharing
             }
             catch (SQLiteException exception)
             {
-                throw exception;
+                exception = new SQLiteException("Das Fahrzeug mit dem Nummernschild " + "'" + licenseTag + "'" + " ist bereits an Nutzer mit ID " + "'" + lenderId + "'" + "ausgeliehen");
+                MessageBox.Show(exception.Message);
             }
         }
 
