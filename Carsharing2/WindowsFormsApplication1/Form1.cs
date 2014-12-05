@@ -198,11 +198,27 @@ namespace Carsharing
                 MessageBox.Show("Bitte Namen eintragen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            else
+            {
+                if (String.IsNullOrWhiteSpace(tbxName.Text))
+                {
+                    MessageBox.Show("Der name darf nicht ausschließlich aus Leerzeichen bestehen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
 
             if (String.IsNullOrEmpty(tbxAdress.Text))
             {
                 MessageBox.Show("Bitte Adresse angeben." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+            else
+            {
+                if (String.IsNullOrWhiteSpace(tbxName.Text))
+                {
+                    MessageBox.Show("Die Adresse darf nicht ausschließlich aus Leerzeichen bestehen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
 
             if (String.IsNullOrEmpty(tbxAge.Text))
@@ -212,10 +228,26 @@ namespace Carsharing
             }
             else
             {
-                if (Convert.ToInt32(tbxAge.Text) <= Convert.ToInt32(tbxAge.Text))
+                if (String.IsNullOrWhiteSpace(tbxName.Text))
                 {
-                    MessageBox.Show("Der Mieter muss volljährig sein!");
+                    MessageBox.Show("Das Alter darf nicht ausschließlich aus Leerzeichen bestehen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+                else
+                {
+                    try
+                    {
+
+                        if (Convert.ToInt32(tbxAge.Text) <= 17)
+                        {
+                            MessageBox.Show("Der Mieter muss volljährig sein!");
+                            return;
+                        }
+                    }
+                    catch (OverflowException exception)
+                    {
+                        throw exception;
+                    }
                 }
             }
 
