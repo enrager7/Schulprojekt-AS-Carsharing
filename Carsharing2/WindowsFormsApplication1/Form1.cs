@@ -323,5 +323,17 @@ namespace Carsharing
                 loadDatasets();
             }
         }
+
+        private void Form1_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //Resize behavior - keine Ahnung.. Markus kennst du dich da besser aus? Sieh irgendwie nicht ganz so aus wie ich es gern hätte.....
+            groupBox3.Width = Form1.ActiveForm.Width / 2 - 6;
+            groupBox2.Width = groupBox3.Width;
+            LenderDataGrid.Width = groupBox3.Width - 15;
+            CarDataGridView.Width = groupBox3.Width - 15;
+            CarDataGridView.Margin = new Padding(9); ;
+            CarDataGridView.Height = groupBox3.Height - 100;
+            LenderDataGrid.Height = groupBox2.Height - 10;
+        }
     }
 }

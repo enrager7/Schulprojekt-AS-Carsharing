@@ -54,6 +54,7 @@
             this.AdressLbl = new System.Windows.Forms.Label();
             this.NameLbl = new System.Windows.Forms.Label();
             this.RentPage = new System.Windows.Forms.TabPage();
+            this.LenderCarDataGrid = new System.Windows.Forms.DataGridView();
             this.RentCarDataGrid = new System.Windows.Forms.DataGridView();
             this.RentLenderDataGrid = new System.Windows.Forms.DataGridView();
             this.DeleteBtn = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Branchlbl = new System.Windows.Forms.Label();
             this.BranchCbx = new System.Windows.Forms.ComboBox();
-            this.LenderCarDataGrid = new System.Windows.Forms.DataGridView();
             this.Container.SuspendLayout();
             this.DataPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -72,15 +72,18 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LenderDataGrid)).BeginInit();
             this.RentPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LenderCarDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RentCarDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RentLenderDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDataSetBranchBox)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LenderCarDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // Container
             // 
+            this.Container.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Container.Controls.Add(this.DataPage);
             this.Container.Controls.Add(this.RentPage);
             this.Container.Location = new System.Drawing.Point(0, 67);
@@ -102,6 +105,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox3.Controls.Add(this.CarDataGridView);
             this.groupBox3.Controls.Add(this.btnDeleteCar);
             this.groupBox3.Controls.Add(this.btnCreateCar);
@@ -113,9 +117,10 @@
             this.groupBox3.Controls.Add(this.modelLbl);
             this.groupBox3.Controls.Add(this.ManufacturerLbl);
             this.groupBox3.Controls.Add(this.LicenseIDLbl);
-            this.groupBox3.Location = new System.Drawing.Point(440, 3);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox3.Location = new System.Drawing.Point(443, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(434, 338);
+            this.groupBox3.Size = new System.Drawing.Size(434, 344);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Auto";
@@ -132,7 +137,8 @@
             this.CarDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.CarDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.CarDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CarDataGridView.Location = new System.Drawing.Point(3, 182);
+            this.CarDataGridView.Location = new System.Drawing.Point(3, 176);
+            this.CarDataGridView.MultiSelect = false;
             this.CarDataGridView.Name = "CarDataGridView";
             this.CarDataGridView.ReadOnly = true;
             this.CarDataGridView.RowHeadersVisible = false;
@@ -143,7 +149,7 @@
             // 
             // btnDeleteCar
             // 
-            this.btnDeleteCar.Location = new System.Drawing.Point(353, 73);
+            this.btnDeleteCar.Location = new System.Drawing.Point(353, 76);
             this.btnDeleteCar.Name = "btnDeleteCar";
             this.btnDeleteCar.Size = new System.Drawing.Size(75, 43);
             this.btnDeleteCar.TabIndex = 16;
@@ -153,7 +159,7 @@
             // 
             // btnCreateCar
             // 
-            this.btnCreateCar.Location = new System.Drawing.Point(353, 28);
+            this.btnCreateCar.Location = new System.Drawing.Point(353, 31);
             this.btnCreateCar.Name = "btnCreateCar";
             this.btnCreateCar.Size = new System.Drawing.Size(75, 39);
             this.btnCreateCar.TabIndex = 15;
@@ -163,7 +169,7 @@
             // 
             // tbxPrice
             // 
-            this.tbxPrice.Location = new System.Drawing.Point(156, 122);
+            this.tbxPrice.Location = new System.Drawing.Point(156, 125);
             this.tbxPrice.Name = "tbxPrice";
             this.tbxPrice.Size = new System.Drawing.Size(176, 20);
             this.tbxPrice.TabIndex = 14;
@@ -171,7 +177,7 @@
             // priceLbl
             // 
             this.priceLbl.AutoSize = true;
-            this.priceLbl.Location = new System.Drawing.Point(74, 125);
+            this.priceLbl.Location = new System.Drawing.Point(74, 128);
             this.priceLbl.Name = "priceLbl";
             this.priceLbl.Size = new System.Drawing.Size(30, 13);
             this.priceLbl.TabIndex = 13;
@@ -179,21 +185,21 @@
             // 
             // tbxModel
             // 
-            this.tbxModel.Location = new System.Drawing.Point(156, 96);
+            this.tbxModel.Location = new System.Drawing.Point(156, 99);
             this.tbxModel.Name = "tbxModel";
             this.tbxModel.Size = new System.Drawing.Size(176, 20);
             this.tbxModel.TabIndex = 12;
             // 
             // tbxManufacturer
             // 
-            this.tbxManufacturer.Location = new System.Drawing.Point(156, 65);
+            this.tbxManufacturer.Location = new System.Drawing.Point(156, 68);
             this.tbxManufacturer.Name = "tbxManufacturer";
             this.tbxManufacturer.Size = new System.Drawing.Size(176, 20);
             this.tbxManufacturer.TabIndex = 11;
             // 
             // tbxLicenseTag
             // 
-            this.tbxLicenseTag.Location = new System.Drawing.Point(156, 33);
+            this.tbxLicenseTag.Location = new System.Drawing.Point(156, 36);
             this.tbxLicenseTag.Name = "tbxLicenseTag";
             this.tbxLicenseTag.Size = new System.Drawing.Size(176, 20);
             this.tbxLicenseTag.TabIndex = 10;
@@ -201,7 +207,7 @@
             // modelLbl
             // 
             this.modelLbl.AutoSize = true;
-            this.modelLbl.Location = new System.Drawing.Point(74, 99);
+            this.modelLbl.Location = new System.Drawing.Point(74, 102);
             this.modelLbl.Name = "modelLbl";
             this.modelLbl.Size = new System.Drawing.Size(38, 13);
             this.modelLbl.TabIndex = 9;
@@ -210,7 +216,7 @@
             // ManufacturerLbl
             // 
             this.ManufacturerLbl.AutoSize = true;
-            this.ManufacturerLbl.Location = new System.Drawing.Point(74, 68);
+            this.ManufacturerLbl.Location = new System.Drawing.Point(74, 71);
             this.ManufacturerLbl.Name = "ManufacturerLbl";
             this.ManufacturerLbl.Size = new System.Drawing.Size(51, 13);
             this.ManufacturerLbl.TabIndex = 8;
@@ -219,7 +225,7 @@
             // LicenseIDLbl
             // 
             this.LicenseIDLbl.AutoSize = true;
-            this.LicenseIDLbl.Location = new System.Drawing.Point(74, 36);
+            this.LicenseIDLbl.Location = new System.Drawing.Point(74, 39);
             this.LicenseIDLbl.Name = "LicenseIDLbl";
             this.LicenseIDLbl.Size = new System.Drawing.Size(69, 13);
             this.LicenseIDLbl.TabIndex = 7;
@@ -227,6 +233,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox2.Controls.Add(this.LenderDataGrid);
             this.groupBox2.Controls.Add(this.btnLenderDelete);
             this.groupBox2.Controls.Add(this.btnLenderCreate);
@@ -236,9 +243,10 @@
             this.groupBox2.Controls.Add(this.AgeLbl);
             this.groupBox2.Controls.Add(this.AdressLbl);
             this.groupBox2.Controls.Add(this.NameLbl);
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(434, 338);
+            this.groupBox2.Size = new System.Drawing.Size(434, 344);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Mieter";
@@ -255,7 +263,8 @@
             this.LenderDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.LenderDataGrid.BackgroundColor = System.Drawing.Color.White;
             this.LenderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LenderDataGrid.Location = new System.Drawing.Point(5, 182);
+            this.LenderDataGrid.Location = new System.Drawing.Point(5, 176);
+            this.LenderDataGrid.MultiSelect = false;
             this.LenderDataGrid.Name = "LenderDataGrid";
             this.LenderDataGrid.ReadOnly = true;
             this.LenderDataGrid.RowHeadersVisible = false;
@@ -266,7 +275,7 @@
             // 
             // btnLenderDelete
             // 
-            this.btnLenderDelete.Location = new System.Drawing.Point(334, 73);
+            this.btnLenderDelete.Location = new System.Drawing.Point(334, 76);
             this.btnLenderDelete.Name = "btnLenderDelete";
             this.btnLenderDelete.Size = new System.Drawing.Size(75, 43);
             this.btnLenderDelete.TabIndex = 8;
@@ -276,7 +285,7 @@
             // 
             // btnLenderCreate
             // 
-            this.btnLenderCreate.Location = new System.Drawing.Point(334, 28);
+            this.btnLenderCreate.Location = new System.Drawing.Point(334, 31);
             this.btnLenderCreate.Name = "btnLenderCreate";
             this.btnLenderCreate.Size = new System.Drawing.Size(75, 39);
             this.btnLenderCreate.TabIndex = 7;
@@ -286,21 +295,21 @@
             // 
             // tbxAge
             // 
-            this.tbxAge.Location = new System.Drawing.Point(105, 96);
+            this.tbxAge.Location = new System.Drawing.Point(105, 99);
             this.tbxAge.Name = "tbxAge";
             this.tbxAge.Size = new System.Drawing.Size(176, 20);
             this.tbxAge.TabIndex = 6;
             // 
             // tbxAdress
             // 
-            this.tbxAdress.Location = new System.Drawing.Point(105, 65);
+            this.tbxAdress.Location = new System.Drawing.Point(105, 68);
             this.tbxAdress.Name = "tbxAdress";
             this.tbxAdress.Size = new System.Drawing.Size(176, 20);
             this.tbxAdress.TabIndex = 5;
             // 
             // tbxName
             // 
-            this.tbxName.Location = new System.Drawing.Point(105, 33);
+            this.tbxName.Location = new System.Drawing.Point(105, 36);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(176, 20);
             this.tbxName.TabIndex = 4;
@@ -309,7 +318,7 @@
             // AgeLbl
             // 
             this.AgeLbl.AutoSize = true;
-            this.AgeLbl.Location = new System.Drawing.Point(23, 99);
+            this.AgeLbl.Location = new System.Drawing.Point(23, 102);
             this.AgeLbl.Name = "AgeLbl";
             this.AgeLbl.Size = new System.Drawing.Size(28, 13);
             this.AgeLbl.TabIndex = 3;
@@ -318,7 +327,7 @@
             // AdressLbl
             // 
             this.AdressLbl.AutoSize = true;
-            this.AdressLbl.Location = new System.Drawing.Point(23, 68);
+            this.AdressLbl.Location = new System.Drawing.Point(23, 71);
             this.AdressLbl.Name = "AdressLbl";
             this.AdressLbl.Size = new System.Drawing.Size(45, 13);
             this.AdressLbl.TabIndex = 2;
@@ -327,7 +336,7 @@
             // NameLbl
             // 
             this.NameLbl.AutoSize = true;
-            this.NameLbl.Location = new System.Drawing.Point(23, 36);
+            this.NameLbl.Location = new System.Drawing.Point(23, 39);
             this.NameLbl.Name = "NameLbl";
             this.NameLbl.Size = new System.Drawing.Size(35, 13);
             this.NameLbl.TabIndex = 1;
@@ -348,6 +357,26 @@
             this.RentPage.TabIndex = 1;
             this.RentPage.Text = "Vermietung";
             this.RentPage.UseVisualStyleBackColor = true;
+            // 
+            // LenderCarDataGrid
+            // 
+            this.LenderCarDataGrid.AllowUserToAddRows = false;
+            this.LenderCarDataGrid.AllowUserToDeleteRows = false;
+            this.LenderCarDataGrid.AllowUserToOrderColumns = true;
+            this.LenderCarDataGrid.AllowUserToResizeColumns = false;
+            this.LenderCarDataGrid.AllowUserToResizeRows = false;
+            this.LenderCarDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.LenderCarDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.LenderCarDataGrid.BackgroundColor = System.Drawing.Color.White;
+            this.LenderCarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LenderCarDataGrid.Location = new System.Drawing.Point(202, 134);
+            this.LenderCarDataGrid.Name = "LenderCarDataGrid";
+            this.LenderCarDataGrid.ReadOnly = true;
+            this.LenderCarDataGrid.RowHeadersVisible = false;
+            this.LenderCarDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.LenderCarDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.LenderCarDataGrid.Size = new System.Drawing.Size(486, 94);
+            this.LenderCarDataGrid.TabIndex = 19;
             // 
             // RentCarDataGrid
             // 
@@ -430,6 +459,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.Branchlbl);
             this.groupBox1.Controls.Add(this.BranchCbx);
             this.groupBox1.Location = new System.Drawing.Point(3, 2);
@@ -458,26 +489,6 @@
             this.BranchCbx.Size = new System.Drawing.Size(236, 21);
             this.BranchCbx.TabIndex = 0;
             // 
-            // LenderCarDataGrid
-            // 
-            this.LenderCarDataGrid.AllowUserToAddRows = false;
-            this.LenderCarDataGrid.AllowUserToDeleteRows = false;
-            this.LenderCarDataGrid.AllowUserToOrderColumns = true;
-            this.LenderCarDataGrid.AllowUserToResizeColumns = false;
-            this.LenderCarDataGrid.AllowUserToResizeRows = false;
-            this.LenderCarDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.LenderCarDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.LenderCarDataGrid.BackgroundColor = System.Drawing.Color.White;
-            this.LenderCarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LenderCarDataGrid.Location = new System.Drawing.Point(202, 134);
-            this.LenderCarDataGrid.Name = "LenderCarDataGrid";
-            this.LenderCarDataGrid.ReadOnly = true;
-            this.LenderCarDataGrid.RowHeadersVisible = false;
-            this.LenderCarDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LenderCarDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LenderCarDataGrid.Size = new System.Drawing.Size(486, 94);
-            this.LenderCarDataGrid.TabIndex = 19;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,9 +496,11 @@
             this.ClientSize = new System.Drawing.Size(885, 436);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Container);
+            this.MinimumSize = new System.Drawing.Size(901, 472);
             this.Name = "Form1";
             this.Text = "Auto-Vermietung";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.ClientSizeChanged += new System.EventHandler(this.Form1_ClientSizeChanged);
             this.Container.ResumeLayout(false);
             this.DataPage.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -498,12 +511,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.LenderDataGrid)).EndInit();
             this.RentPage.ResumeLayout(false);
             this.RentPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LenderCarDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RentCarDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RentLenderDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDataSetBranchBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LenderCarDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
