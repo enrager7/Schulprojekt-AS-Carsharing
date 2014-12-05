@@ -179,7 +179,7 @@ namespace Carsharing
             RentLenderDataGrid.DataSource = bindingSourceLender;
             RentLenderDataGrid.RowHeadersVisible = false;
             //Spalten benennen
-            RentLenderDataGrid.Columns[0].HeaderText = "Mitarbeiter ID";
+            RentLenderDataGrid.Columns[0].HeaderText = "Mieter ID";
             RentLenderDataGrid.Columns[1].HeaderText = "Name";
             RentLenderDataGrid.Columns[2].HeaderText = "Alter";
             RentLenderDataGrid.Columns[3].HeaderText = "Adresse";
@@ -209,7 +209,15 @@ namespace Carsharing
             {
                 MessageBox.Show("Bitte Alter eintragen." + System.Environment.NewLine + "Verarbeitung unterbrochen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-        }
+            }
+            else
+            {
+                if (Convert.ToInt32(tbxAge.Text) <= Convert.ToInt32(tbxAge.Text))
+                {
+                    MessageBox.Show("Der Mieter muss volljährig sein!");
+                    return;
+                }
+            }
 
             carsharinginstance.CreateLender(tbxName.Text, Convert.ToInt32(tbxAge.Text), tbxAdress.Text);
             tbxName.Text = "";
@@ -220,12 +228,15 @@ namespace Carsharing
 
         private void btnLenderDelete_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = LenderDataGrid.CurrentRow;
-            int lenderID = Convert.ToInt32(row.Cells[0].Value);
-            if (MessageBox.Show("Wollen Sie wirklich den Mieter mit der Nummer " + Convert.ToString(lenderID) + " löschen?", "Löschen bestätigen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            if (LenderDataGrid.Rows.Count != 0)
             {
-                carsharinginstance.RemoveLender(lenderID);
-                loadDatasets();
+                DataGridViewRow row = LenderDataGrid.CurrentRow;
+                int lenderID = Convert.ToInt32(row.Cells[0].Value);
+                if (MessageBox.Show("Wollen Sie wirklich den Mieter mit der Nummer " + Convert.ToString(lenderID) + " löschen?", "Löschen bestätigen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    carsharinginstance.RemoveLender(lenderID);
+                    loadDatasets();
+                }
             }
         }
 
@@ -266,12 +277,15 @@ namespace Carsharing
 
         private void btnDeleteCar_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = CarDataGridView.CurrentRow;
-            string carID = row.Cells[0].Value.ToString();
-            if (MessageBox.Show("Wollen Sie wirklich das Auto mit dem Kennzeichen " + carID + " löschen?", "Löschen bestätigen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            if (CarDataGridView.Rows.Count != 0)
             {
-                carsharinginstance.RemoveCar(carID);
-                loadDatasets();
+                DataGridViewRow row = CarDataGridView.CurrentRow;
+                string carID = row.Cells[0].Value.ToString();
+                if (MessageBox.Show("Wollen Sie wirklich das Auto mit dem Kennzeichen " + carID + " löschen?", "Löschen bestätigen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    carsharinginstance.RemoveCar(carID);
+                    loadDatasets();
+                }
             }
         }
 
@@ -281,7 +295,7 @@ namespace Carsharing
             int lenderID = Convert.ToInt32(lenderRow.Cells[0].Value);
 
             DataGridViewRow carRow = RentCarDataGrid.CurrentRow;
-            string licenseTag = carRow.Cells[1].Value.ToString();
+            string licenseTag = carRow.Cells[0].Value.ToString() + " " + carRow.Cells[1].Value.ToString();
 
             carsharinginstance.LentCar(lenderID, licenseTag);
             loadDatasets();
@@ -289,12 +303,15 @@ namespace Carsharing
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            DataGridViewRow lendercarRow = LenderCarDataGrid.CurrentRow;
-            int lenderID = Convert.ToInt32(lendercarRow.Cells[0].Value);
-            string licenseTag = lendercarRow.Cells[1].Value.ToString();
+            if (LenderCarDataGrid.Rows.Count > 0)
+            {
+                DataGridViewRow lendercarRow = LenderCarDataGrid.CurrentRow;
+                int lenderID = Convert.ToInt32(lendercarRow.Cells[0].Value);
+                string licenseTag = lendercarRow.Cells[1].Value.ToString();
 
-            carsharinginstance.ReturnCar(lenderID, licenseTag);
-            loadDatasets();
+                carsharinginstance.ReturnCar(lenderID, licenseTag);
+                loadDatasets();
+            }
         }
     }
 }

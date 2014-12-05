@@ -21,7 +21,7 @@ namespace Carsharing
         public SerializedDatabase() //Werden Übergabeparameter benötigt?
         {
             if (File.Exists("data.dat"))
-                this.carsharingData = (DataSet)Serializer.LoadObject("data.dat");
+                this.carsharingData = (DataSet)Serializer.LoadObject("data.dat"); //Laden der Binärdaten
             else
             {
                 this.carsharingData = new DataSet("CarsharingData");
@@ -66,6 +66,14 @@ namespace Carsharing
                 this.t_lendercar.PrimaryKey = new DataColumn[] { t_lendercar.Columns["p_f_lenderId"], t_lendercar.Columns["p_f_licenseTag"] };
                 this.carsharingData.Tables.Add(this.t_lendercar);
 
+                //Foreign Key Constraints
+                ForeignKeyConstraint carlicensetagTLenderCar = new ForeignKeyConstraint(this.CarsharingData.Tables["T_LenderCar"].Columns["p_f_licenseTag"], this.CarsharingData.Tables["T_Car"].Columns["p_licenseTag"]);
+                carlicensetagTLenderCar.DeleteRule = Rule.None;
+                carlicensetagTLenderCar.UpdateRule = Rule.Cascade;
+
+                this.CarsharingData.Tables["T_LenderCar"].Constraints.Add(carlicensetagTLenderCar);
+                this.CarsharingData.EnforceConstraints = true;
+
                 //testdaten
                 //Branches erstellen
                 if (this.CarsharingData.Tables["T_Carsharing"].Rows.Count < 3)
@@ -109,10 +117,17 @@ namespace Carsharing
             {
                 if (this.CarsharingData.Tables["T_LenderCar"].Rows.Contains(new object[] { lenderId, licenseTag }))
                 {
-
+                    //Bereits eine Kombination von der lenderId und licenseTag
                 }
                 else
                 {
+                    bool foundCar = false;
+                    foreach (DataRow dr in this.CarsharingData.Tables["T_LenderCar"].Rows)
+                    {
+                        if (Convert.ToString(dr.ItemArray.GetValue(1)) == licenseTag)
+                            foundCar = true;
+                    }
+                    if(foundCar != true)
                         this.CarsharingData.Tables["T_LenderCar"].Rows.Add(lenderId, licenseTag);
                 }
             }

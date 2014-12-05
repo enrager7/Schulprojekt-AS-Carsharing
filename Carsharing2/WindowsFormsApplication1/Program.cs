@@ -18,8 +18,8 @@ namespace Carsharing
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 app = new Form1();
-            //app.show("serializer"); //Diese Zeile auskommentieren wenn SerializedDatabase.cs verwendet werden soll
-            app.show("sqlite"); //Diese Zeile auskommentieren wenn Database.cs mit SQLITE verwendet werden soll
+            app.show("serializer"); //Diese Zeile auskommentieren wenn SerializedDatabase.cs verwendet werden soll
+            //app.show("sqlite"); //Diese Zeile auskommentieren wenn Database.cs mit SQLITE verwendet werden soll
             Application.Run(app);
 
             //TUI
