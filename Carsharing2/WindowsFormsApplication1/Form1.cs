@@ -332,8 +332,8 @@ namespace Carsharing
             LenderDataGrid.Width = groupBox3.Width - 15;
             CarDataGridView.Width = groupBox3.Width - 15;
             CarDataGridView.Margin = new Padding(9); ;
-            CarDataGridView.Height = groupBox3.Height - 100;
-            LenderDataGrid.Height = groupBox2.Height - 10;
+            CarDataGridView.Height = groupBox3.Height - 200;
+            LenderDataGrid.Height = CarDataGridView.Height;
         }
     }
 }
