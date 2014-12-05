@@ -186,12 +186,9 @@ namespace Carsharing
                         licenseTagList.Add(Convert.ToString(reader["p_f_licenseTag"]));
                     }
                 }
-                //Freigabe der Ressourcen
                 connection.Close();
                 command.Dispose();
                 reader.Dispose();
-
-                //Rückgabe der Liste
                 return licenseTagList;
             }
             catch (SQLiteException exception)
@@ -200,6 +197,30 @@ namespace Carsharing
             }
         }
 
+        public List<string> GetAllRentedCars()
+        {
+            try
+            {
+                command = new SQLiteCommand(this.connection);
+                command.CommandText = "SELECT p_f_licenseTag From T_LenderCar;";
+                List<string> licenseTagList = new List<string>();
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                SQLiteDataReader reader = command.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        licenseTagList.Add(Convert.ToString(reader["p_f_licenseTag"]));
+                    }
+                }
+                return licenseTagList;
+            }
+            catch (SQLiteException exception)
+            {
+                throw exception;
+            }
+
+        }
         // das hier als vorlage fuer die anderen benutzen
         public void executeSqlString(string SqlString)
         {
@@ -220,3 +241,4 @@ namespace Carsharing
         }
     }
 }
+

@@ -222,6 +222,15 @@ namespace Carsharing
             return licenseTagList;
         }
 
+        public List<string> GetAllRentedCars() 
+        {
+            List<string> licenseTagList = new List<string>();
+            foreach (DataRow dr in this.carsharingData.Tables["T_LenderCar"].Rows)
+            {
+                    licenseTagList.Add(dr.ItemArray[1].ToString());
+            }
+            return licenseTagList; 
+        }
         // Niederlassung anlegen
         public void CreateBranch(string name, string adress)
         {

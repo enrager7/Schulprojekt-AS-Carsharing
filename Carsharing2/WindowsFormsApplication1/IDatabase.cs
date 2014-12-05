@@ -25,7 +25,7 @@ namespace Carsharing
 
         DataSet LoadData();
 
-        List<string> GetRentedCars(int lenderID);
+        List<string> GetAllRentedCars();
 
         void CreateBranch(string name, string adress);
 

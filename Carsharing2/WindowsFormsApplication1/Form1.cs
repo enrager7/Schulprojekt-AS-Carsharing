@@ -296,8 +296,18 @@ namespace Carsharing
 
             DataGridViewRow carRow = RentCarDataGrid.CurrentRow;
             string licenseTag = carRow.Cells[0].Value.ToString() + " " + carRow.Cells[1].Value.ToString();
-
-            carsharinginstance.LentCar(lenderID, licenseTag);
+            
+            //Prüfen, ob Fahrzeug bereits ausgeliehen wurde
+            List<string> lendenCars = carsharinginstance.GetRentedCarsFromDataBase();
+            bool containscar = false;
+            foreach (string element in lendenCars)
+            {
+                if (element == licenseTag)
+                    containscar = true;
+            }
+            //Auleihen
+            if(containscar != true)
+                carsharinginstance.LentCar(lenderID, licenseTag);
             loadDatasets();
         }
 

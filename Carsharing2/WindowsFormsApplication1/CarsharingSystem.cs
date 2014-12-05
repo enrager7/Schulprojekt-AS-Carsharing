@@ -23,17 +23,17 @@ namespace Carsharing
          *                  
          * Siehe Properties ab Zeile 29
          */
-        private bool dataChanged;
+        //private bool dataChanged;
 
         //Public properties
-        public bool DataChanged { get { return this.dataChanged; } set { if (value == true) { LoadData(); ReloadInstances(); value = true; } else value = false; } }//Reload Data after any changes to database (macht das Sinn?)
-        public List<Branch> BranchList { get { return this.branchlist; } } //Nur Lesezugriff
-        public List<Car> CarList { get { return this.carlist; } }
-        public List<Lender> LenderList { get { return this.lenderlist; } }
+        //public bool DataChanged { get { return this.dataChanged; } set { if (value == true) { LoadData(); ReloadInstances(); value = true; } else value = false; } }//Reload Data after any changes to database (macht das Sinn?)
+        //public List<Branch> BranchList { get { return this.branchlist; } } //Nur Lesezugriff
+        //public List<Car> CarList { get { return this.carlist; } }
+        //public List<Lender> LenderList { get { return this.lenderlist; } }
         public CarsharingSystem(string savetype)
         {
             //Instanziere der benötigten Listen
-            this.dataChanged = false;
+            //this.dataChanged = false;
             this.branchlist = new List<Branch>();
             this.carlist = new List<Car>();
             this.lenderlist = new List<Lender>();
@@ -52,13 +52,13 @@ namespace Carsharing
                 }
             }
             //Instanzierung der Klassen in Objekte
-            CreateInstances();
+            //CreateInstances();
         }
         /*  Makus,du kannst dich entscheiden ob du lieber mit den Listen und Objekten,
          * oder mit dem DataSet arbeiten möchtest.
          * */
         #region dataLoadingStuff
-        private void CreateInstances()
+        /*private void CreateInstances()
         {
             //Daten aus der Datenbank lesen
             DataSet carsharingData = this.GetDataSet();
@@ -85,25 +85,24 @@ namespace Carsharing
                 Car tempCar = new Car(Convert.ToString(dr.ItemArray.GetValue(0)), Convert.ToString(dr.ItemArray.GetValue(1)), Convert.ToString(dr.ItemArray.GetValue(2)), Convert.ToDecimal(dr.ItemArray.GetValue(3)), Convert.ToInt32(dr.ItemArray.GetValue(4)));
                 this.carlist.Add(tempCar);
             }
-        }
+        }*/
         //Erneuern der Instanzdaten
         private void ReloadInstances()
         {
             this.branchlist.Clear();
             this.lenderlist.Clear();
             this.carlist.Clear();
-            CreateInstances();
-            DataChanged = false;
+            //CreateInstances();
+            //DataChanged = false;
         }
         public void LoadData()//Laden der Daten aus der Datenbank in das DataSet "carsharingData"
         {
             this.carsharingData = this.persistence.LoadData();
         }
 
-        public void DataListTransfer()
+        public List<string> GetRentedCarsFromDataBase()
         {
-            //TODO: Methode soll sämtliche Listen(carlist, lenderlist, branchlist) an die Form bzw. die TUI übergeben. Eine Idee wie? 3 Listen in eine neue Liste Packen? Oder in eine Dictionary? Im Array?
-            //Oder Zugriff über Public Property mit getter. Siehe kommentar oben bei zeile 19.
+            return this.persistence.GetAllRentedCars();
         }
 
         //Lädt Daten aus der Datenbank in das DataSet "carsharingData" und gibt es anschließend zurück. Kann zum Aktualisieren des DataSets verwendet werden.
@@ -119,34 +118,34 @@ namespace Carsharing
         public void CreateBranch(string name, string adress)
         {
             this.persistence.CreateBranch(name, adress);
-            DataChanged = true;
+            //DataChanged = true;
         }
         //Niederlassung entfernen
         public void RemoveBranch(int branchNo)
         {
             this.persistence.RemoveBranch(branchNo);
-            DataChanged = true;
+            //DataChanged = true;
         }
 
         //Ausleihen
         public void LentCar(int lenderID, string licenseTag)
         {
             this.persistence.InsertLending(lenderID, licenseTag);
-            DataChanged = true;
+            //DataChanged = true;
         }
 
         //Löschen
         public void ReturnCar(int lenderID, string licenseTag)
         {
             this.persistence.RemoveLending(lenderID,licenseTag);
-            DataChanged = true;
+            //DataChanged = true;
         }
 
         //Mieter anlegen
         public void CreateLender(string name, int age, string adress)
         {
             this.persistence.CreateLender(name, age, adress);
-            DataChanged = true;
+            //DataChanged = true;
         }
 
         //Mieter anzeigen
@@ -160,21 +159,21 @@ namespace Carsharing
         {
             Lender lender = new Lender();
             this.persistence.RemoveLender(lenderId);
-            DataChanged = true;
+            //DataChanged = true;
         }
 
         //Auto anlegen
         public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay, int assignedBranchNo)
         {
             this.persistence.CreateCar(licenseTag, model, manufacturer, pricePerDay, assignedBranchNo);
-            DataChanged = true;
+            //DataChanged = true;
         }
 
         //Auto löschen
         public void RemoveCar(string licenseTag)
         {
             this.persistence.RemoveCar(licenseTag);
-            DataChanged = true;
+            //DataChanged = true;
         }
         #endregion
     }
