@@ -3,16 +3,101 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Carsharing
 {
     class Tui : IUi
     {
+        private CarsharingSystem carsharinginstance;//Deklaration
+        private DataSet dataImage;
+        private List<Lender> lenderList = new List<Lender>();
+        private List<Car> carList = new List<Car>();
+
         public void show(string savetype)
         {
+            carsharinginstance = new CarsharingSystem(savetype);
+            initLists();
             string returnvalue;
-            CarsharingSystem carsharing = new CarsharingSystem(savetype);
+            CarsharingSystem carsharingsystem = new CarsharingSystem(savetype);
+            do 
+            {
+                initLists();
+                returnvalue = showmenu();
+                switch (returnvalue)
+                {
+                    case "a":
+                        Console.Clear();
+                        Console.Write("Name: ");
+                        string name = Console.ReadLine();
 
+                        Console.Write("Alter: ");
+                        int age = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Adresse: ");
+                        string adress = Console.ReadLine();
+
+                        carsharingsystem.CreateLender(name, age, adress);
+                        Console.WriteLine("Mieter angelegt.");
+                        showLender();
+                        break;
+
+                    case "b":
+                        showLender();
+                        break;
+
+                    case "c":
+                        showLender();
+                        Console.WriteLine();
+                        Console.Write("Mieter ID zum löschen: ");
+                        carsharingsystem.RemoveLender(Convert.ToInt32(Console.ReadLine()));
+                        showLender();
+                        Console.WriteLine("Mieter wurde gelöscht");
+                        break;
+
+                    case "d":
+                        Console.Clear();
+                        Console.Write("Kennzeichen: ");
+                        string licenseTag = Console.ReadLine();
+
+                        Console.Write("Model: ");
+                        string model = Console.ReadLine();
+
+                        Console.Write("Hersteller: ");
+                        string manufacturer = Console.ReadLine();
+
+                        Console.Write("Preis pro Tag: ");
+                        decimal pricePerDay = Convert.ToDecimal(Console.ReadLine());
+
+                        carsharingsystem.CreateCar(licenseTag, model, manufacturer, pricePerDay, 1);
+                        Console.WriteLine("Auto angelegt.");
+                        showCar();
+                        break;
+
+                    case "e":
+                        showCar();
+                        break;
+
+                    case "f":
+                        showCar();
+                        Console.WriteLine();
+                        Console.Write("Autokennzeichen zum löschen: ");
+                        carsharingsystem.RemoveCar(Console.ReadLine());
+                        showCar();
+                        Console.WriteLine("Auto wurde gelöscht");
+                        break;
+                }
+
+                //Console.WriteLine("Esc drücken zum Beenden.");
+                //Console.ReadLine();
+            }
+            while (Console.ReadKey().Key != ConsoleKey.Escape);
+            
+            
+        }
+        public string showmenu()
+        {
+            Console.Clear();
             Console.WriteLine("*************************************");
             Console.WriteLine("Autovermietung");
             Console.WriteLine("*************************************");
@@ -31,25 +116,84 @@ namespace Carsharing
             Console.WriteLine("");
             Console.WriteLine("Auto Ausleihen  (g)");
             Console.WriteLine("Auto zurückgeben(h)");
-            returnvalue = Console.ReadLine();
-
-            if (returnvalue == "a")
+            return (Console.ReadLine());
+        }
+        public void showLender()
+        {
+            initLists();
+            Console.Clear();
+            string space;
+            Console.WriteLine("ID     " + "Name                " + "Alter     " + "Adresse");
+            Console.WriteLine("========================================================================");
+            foreach (Lender lend in lenderList)
             {
-                Console.Write("Name: ");
-                string name = Console.ReadLine();
-                Console.Write("Alter: ");
-                int age = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Adresse: ");
-                string adress = Console.ReadLine();
-                
-                carsharing.CreateLender(name, age, adress);
-                Console.ReadLine();
+                space = "      ";
+                string agespace = "";
+                if (lend.GetLenderId() > 9)
+                {
+                    space = "     ";
+                }
+                for (int i = 0; i <= 19 - Convert.ToInt32(lend.GetName().Length); i++)
+                {
+                    agespace += " ";
+                }
+                Console.WriteLine(lend.GetLenderId() + space + lend.GetName() + agespace + lend.GetAge() + "        " + lend.GetAdress());
+            }
+        }
+
+        public void showCar()
+        {
+            initLists();
+            Console.Clear();
+            Console.WriteLine("Kennzeichen     " + "Hersteller           " + "Model                    " + "Preis pro Tag");
+            Console.WriteLine("================================================================================");
+            foreach (Car car in carList)
+            {
+                Console.WriteLine(car.GetLicenseTag() + getspace(car.GetLicenseTag(), 15) + car.GetManufacturer() + getspace(car.GetManufacturer(), 20) + car.GetModel() + getspace(car.GetModel(), 24) + car.GetPricePerDay());
+            }
+        }
+
+        public void initLists()
+        {
+            lenderList.Clear();
+            carList.Clear();
+
+            dataImage = this.carsharinginstance.GetDataSet();
+            DataTable lenderTable = dataImage.Tables["T_Lender"];
+            foreach (DataRow row in lenderTable.Rows)
+            {
+                int id = Convert.ToInt32(row[0]);
+                string name = row[1].ToString();
+                int age = Convert.ToInt32(row[2]);
+                string adress = row[3].ToString();
+
+                Lender lender = new Lender(id, name, age, adress);
+
+                lenderList.Add(lender);
             }
 
-            
-            carsharing.LoadData();
-            Console.ReadLine();
-            
+            DataTable carTable = dataImage.Tables["T_Car"];
+            foreach (DataRow row in carTable.Rows)
+            {
+                string lictag = row[0].ToString();
+                string model = row[1].ToString();
+                string manufacturer = row[2].ToString();
+                decimal pricePerDay = Convert.ToDecimal(row[3]);
+
+                Car car = new Car(lictag, model, manufacturer, pricePerDay,1);
+
+                carList.Add(car);
+            }
+        }
+
+        public string getspace(string value, int headLenght)
+        {
+            string space = "";
+            for (int i = 0; i <= headLenght - value.Length; i++)
+            {
+                space += " ";
+            }
+            return (space);
         }
     }
 }

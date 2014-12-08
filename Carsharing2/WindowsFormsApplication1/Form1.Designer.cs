@@ -528,7 +528,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabPage RentPage;
         private System.Windows.Forms.Label Branchlbl;
-        private System.Windows.Forms.ComboBox BranchCbx;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tbxPrice;
@@ -559,6 +558,7 @@
         private System.Windows.Forms.DataGridView RentLenderDataGrid;
         private System.Windows.Forms.DataGridView RentCarDataGrid;
         private System.Windows.Forms.DataGridView LenderCarDataGrid;
+        private System.Windows.Forms.ComboBox BranchCbx;
     }
 }
 
