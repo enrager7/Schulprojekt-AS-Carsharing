@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Carsharing
 {
-    interface IUi
+    public interface IUi
     {
         void show(string savetype);
     }
