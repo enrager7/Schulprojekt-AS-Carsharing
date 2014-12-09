@@ -89,7 +89,6 @@ namespace Carsharing
         // Mieter löschen
         public void RemoveLender(int lenderId)
         {
-            Lender lender = new Lender();
             this.persistence.RemoveLender(lenderId);
         }
 
