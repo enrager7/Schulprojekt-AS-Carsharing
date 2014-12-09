@@ -18,7 +18,7 @@ namespace Carsharing
         private DataTable t_lendercar;
         public DataSet CarsharingData { get { return this.carsharingData; } set { this.carsharingData = value; } }
 
-        public SerializedDatabase() //Werden Übergabeparameter benötigt?
+        public SerializedDatabase()
         {
             if (File.Exists("data.dat"))
                 this.carsharingData = (DataSet)Serializer.LoadObject("data.dat"); //Laden der Binärdaten
@@ -98,7 +98,7 @@ namespace Carsharing
 
             }
         }
-        //Destruktor
+        // Destruktor wird benötig um beim Schließen des Programms sämltichen relevanten zu speichern
         ~SerializedDatabase()
         {
             if (this.carsharingData != null)
@@ -134,7 +134,6 @@ namespace Carsharing
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-                //throw new Exception("Fahrzeug " + "'" + licenseTag + "'" + " konnte nicht an Nutzer " + "'" + lenderId + "'" + " ausgeliehen werden.");
             }
         }
 
@@ -231,6 +230,7 @@ namespace Carsharing
             }
             return licenseTagList; 
         }
+        
         // Niederlassung anlegen
         public void CreateBranch(string name, string adress)
         {

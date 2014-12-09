@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 11.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Codegenerierungs-/Texttransformationsprotokoll">
+  <MessageClass Name="Message" Label="Meldung" Option="Informationsmeldungen anzeigen" />
+  <MessageClass Name="Warning" Label="Warnung" Option="Warnungen anzeigen" />
+  <MessageClass Name="Error" Label="Fehler" Option="Fehler anzeigen" />
+  <MessageClass Name="Property" Label="Eigenschaft" Option="Metadaten anzeigen" />
+  <MessageClass Name="Diagnostic" Label="Meldung" Option="Diagnosemeldungen anzeigen" />
+  <Message Timestamp="2014-12-09T21:12:42" Importance="High" Text="Reverse Engineering gestartet." />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: '03f2d8d9-16d5-4cd4-8ebf-5bb0ed25e6f2' -  (ClassifierTemplateParameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing' -  (Package)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::IDatabase' -  (Interface) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Medium" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase' -  (Class)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::~SerializedDatabase' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::carsharingData' -  (Property)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CarsharingData' -  (Property)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateBranch' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateBranch::adress' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateBranch::name' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateCar' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateCar::assignedBranchNo' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateCar::licenseTag' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateCar::manufacturer' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateCar::model' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateCar::pricePerDay' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateLender' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateLender::adress' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateLender::age' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::CreateLender::name' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::GetAllRentedCars' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::GetRentedCars' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::GetRentedCars::lenderID' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::InsertLending' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::InsertLending::lenderId' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::InsertLending::licenseTag' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::LoadData' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveBranch' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveBranch::branchNo' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveCar' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveCar::licenseTag' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveLender' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveLender::lenderId' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveLending' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveLending::lenderId' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::RemoveLending::licenseTag' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::SerializedDatabase' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::ShowLender' -  (Operation)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::ShowLender::lenderID' -  (Parameter)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::t_car' -  (Property)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::t_carsharing' -  (Property)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::t_lender' -  (Property)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::Carsharing::SerializedDatabase::t_lendercar' -  (Property)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System' -  (Package)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Collections' -  (Package)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Collections::Generic' -  (Package)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Collections::Generic::List' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Collections::Generic::List&lt;String‎&gt;' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Data' -  (Package)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Data::DataSet' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Data::DataTable' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'diagramm::System::Decimal' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'String' -  (PrimitiveType)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering der Beziehung in das UML-Modell: diagramm::Carsharing::SerializedDatabase nach diagramm::System::Data::DataSet (Association)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="Diagnostic" Text="Reverse Engineering der Beziehung in das UML-Modell: diagramm::Carsharing::SerializedDatabase nach diagramm::Carsharing::IDatabase (InterfaceRealization)" />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="High" Text="Vollständiges Reverse Engineering für (1) Type(n)." />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="High" Text="Reverse Engineering für (6) Type(n) teilweise durchgeführt. Diese Typen waren nicht in der ursprünglichen Auswahl enthalten, sodass kein Reverse Engineering für deren vollständige Definitionen durchgeführt wurde. Stattdessen wurde bei diesem oberflächlichen Vorgang lediglich sichergestellt, dass diese Typen im UML-Modell vorhanden sind, da diese erforderlich sind, um andere Elemente vollständig zu beschreiben." />
+  <Message Timestamp="2014-12-09T21:12:43" Importance="High" Text="Der Reverse Engineering-Vorgang wurde mit (0) Fehler(n) und (0) Warnung(en) abgeschlossen." />
+</Log>

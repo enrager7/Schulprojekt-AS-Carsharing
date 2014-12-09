@@ -10,6 +10,7 @@ namespace Carsharing
     [Serializable]
     public static class Serializer
     {
+        // Speichern
         public static void SaveObject(object o, string file)
         {
             FileStream fs = new FileStream(file, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -17,6 +18,7 @@ namespace Carsharing
             bf.Serialize(fs, o);
             fs.Close();
         }
+        // Laden
         public static object LoadObject(string file)
         {
             FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);

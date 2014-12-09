@@ -38,7 +38,6 @@ namespace Carsharing
 
         public void InsertLendedCars(List<string> rentedCarsList) 
         {
-            //Füge license Tag in die Liste ein
             this.lendedCars = rentedCarsList;
         }
 
@@ -81,14 +80,5 @@ namespace Carsharing
         {
             return this.adress;
         }
-        /* NICHT MEHR BENÖTIGT
-        public bool IsRemovable(List<string> licenseTagList)
-        {
-            if(licenseTagList.Count < 1)
-                return true;  
-            else
-            return false;
-        }
-         * */
     }
 }

@@ -15,10 +15,10 @@ namespace Carsharing
         private SQLiteConnection connection;
         private SQLiteCommand command;
 
-        //parameterisierter Konstruktor
+        // Parameterisierter Konstruktor
         public Database(string databaseName)
         {
-            //SQLite Datenbank
+            // SQLite Datenbank anbindung
             this.dataSource = databaseName;
             this.connection = new SQLiteConnection();
             this.connection.ConnectionString = "Data Source=" + dataSource;
@@ -35,9 +35,9 @@ namespace Carsharing
             {
                 throw exception;
             }
-            //Lade Daten aus der Datenbank
+            // Lade Daten aus der Datenbank
             LoadData();
-            //Instanzierung der Klassen anhand der Einträge in der Datenbank
+            // Instanzierung der Klassen anhand der Einträge in der Datenbank
             if (connection.State == ConnectionState.Open)
                 connection.Close();
             command.Dispose();
@@ -47,45 +47,40 @@ namespace Carsharing
         {
             try
             {
-                //Erstellen der benötigten Tabellen
+                // Erstellen der benötigten Tabellen
                 DataTable t_carsharing = new DataTable("T_Carsharing");
                 DataTable t_lender = new DataTable("T_Lender");
                 DataTable t_car = new DataTable("T_Car");
                 DataTable t_lendercar = new DataTable("T_LenderCar");
 
-                //DataAdapter mit SELECT Befehl für Tabelle T_Carsharing
+                // DataAdapter mit SELECT Befehl für Tabelle T_Carsharing
                 SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter("SELECT p_branchNo, name, adress FROM T_Carsharing", this.connection);
-                //Befüllen der Tabelle
+                // Befüllen der Tabelle
                 dataAdapter.Fill(t_carsharing);
-                //Ressourcenfreigabe
+                // Ressourcenfreigabe
                 dataAdapter.Dispose();
 
-                //DataAdapter mit SELECT Befehl für Tabelle T_Lender
+                // DataAdapter mit SELECT Befehl für Tabelle T_Lender
                 dataAdapter = new SQLiteDataAdapter("SELECT p_lenderID, name, age, adress FROM T_Lender", this.connection);
                 dataAdapter.Fill(t_lender);
                 dataAdapter.Dispose();
 
-                //DataAdapter mit SELECT Befehl für Tabelle T_Car
+                // DataAdapter mit SELECT Befehl für Tabelle T_Car
                 dataAdapter = new SQLiteDataAdapter("SELECT p_licenseTag, model, manufacturer, pricePerDay, p_f_branchNo FROM T_Car", this.connection);
                 dataAdapter.Fill(t_car);
                 dataAdapter.Dispose();
 
-                //DataAdapter mit SELECT Befehl für Tabelle T_LenderCar
+                // DataAdapter mit SELECT Befehl für Tabelle T_LenderCar
                 dataAdapter = new SQLiteDataAdapter("SELECT p_f_lenderId, p_f_licenseTag FROM T_LenderCar", this.connection);
                 dataAdapter.Fill(t_lendercar);
                 dataAdapter.Dispose();
                 connection.Close();
-                //Erstellen und Füllen des DataSet's
+                // Erstellen und Füllen des DataSet's
                 DataSet carsharingData = new DataSet("CarsharingData");
                 carsharingData.Tables.Add(t_carsharing);
                 carsharingData.Tables.Add(t_lender);
                 carsharingData.Tables.Add(t_car);
                 carsharingData.Tables.Add(t_lendercar);
-
-                /* Info Für Markus: 
-                 *  Mit DataSet.tables["Tabellenname"] oder DataSet.tables[index] kann man
-                 *  auf die entsprechende Tabelle zugreifen.
-                 */
 
                 return carsharingData;
             }
@@ -95,50 +90,43 @@ namespace Carsharing
             }
         }
 
-        //Auto Ausleihen
+        // Auto Ausleihen
         public void InsertLending(int lenderId, string licenseTag) //Done but not tested
         {
-            /* Tests und weitere Einschränkungen nötig:
-             */
             string Sqltext = "INSERT INTO T_LenderCar (p_f_lenderId, p_f_licenseTag) VALUES('" + lenderId + "','" + licenseTag + "')";
             this.executeSqlString(Sqltext);
         }
 
         //Ausleihe Löschen
-        public void RemoveLending(int lenderId, string licenseTag)  //DONE but not tested
+        public void RemoveLending(int lenderId, string licenseTag)
         {
-            /* Wann darf ein Mietverhältnis aufgehoben / gelöscht werden?
-             */
-
             string Sqltext = "DELETE FROM T_LenderCar WHERE p_f_lenderId = " + lenderId + " AND p_f_licenseTag = " + "'" + licenseTag + "'";
             this.executeSqlString(Sqltext);
         }
 
-        //Niederlassun hinzufügen
+        // Niederlassun hinzufügen
         public void CreateBranch(string name, string adress)
         {
             string Sqltext = "INSERT INTO T_Carsharing (name, adress) VALUES('" + name + "','" + adress + "');";
             this.executeSqlString(Sqltext);
         }
 
-        //Niederlassung entfernen
+        // Niederlassung entfernen
         public void RemoveBranch(int branchNo)
         {
-            //TODO - Carsharing Niederlassung entfernen (Datensatz aus der Datenbank löschen)
-            //Prüfen ob Fahrzeuge der Niederlassung zugewiesen sind
             string Sqltext = "DELETE FROM T_Carsharing WHERE p_branchNo = " + branchNo + ");";
             this.executeSqlString(Sqltext);
         }
 
-        //Mieter anlegen   
-        public void CreateLender(string name, int age, string adress)   //DONE
+        // Mieter anlegen   
+        public void CreateLender(string name, int age, string adress)
         {
             string Sqltext = "INSERT INTO T_Lender (name, age, adress) VALUES('" + name + "','" + age + "','" + adress + "');";
             this.executeSqlString(Sqltext);
         }
 
-        //Mieter löschen
-        public void RemoveLender(int lenderId) //DONE
+        // Mieter löschen
+        public void RemoveLender(int lenderId)
         {
             List<string> licenseTags = GetRentedCars(lenderId);
             if (licenseTags.Count < 1)
@@ -149,27 +137,27 @@ namespace Carsharing
             else
                 throw new Exception("Der Benutzer hat noch Autos ausgeliehen und kann deswegen nicht gelöscht werden.");
         }
-        //Mieter anzeigen - wird das überhaupt genutzt?
+        // Mieter anzeigen - wird das überhaupt genutzt?
         public void ShowLender(int lenderID)
         {
             string Sqltext = "SELECT * FROM T_Lender WHERE p_lenderId = " + lenderID + ";";
             this.executeSqlString(Sqltext);
         }
 
-        //Auto erstellen
+        // Auto erstellen
         public void CreateCar(string licenseTag, string model, string manufacturer, decimal pricePerDay, int assignedBranchNo)
         {
             string Sqltext = "INSERT INTO T_Car (p_licenseTag, model, manufacturer, priceperDay, p_f_branchNo) VALUES('" + licenseTag + "','" + model + "','" + manufacturer + "','" + pricePerDay + "','" + assignedBranchNo + "');";
             this.executeSqlString(Sqltext);
         }
 
-        //Auto löschen 
+        // Auto löschen 
         public void RemoveCar(string licenseTag)
         {
             string Sqltext = "DELETE FROM T_Car WHERE p_licenseTag = '" + licenseTag + "';";
             this.executeSqlString(Sqltext);
         }
-        //Ausgeliehene Autos pro Mieter - gibt eine String-Liste der jeweiligen Nummernschilder aus 
+        // Ausgeliehene Autos pro Mieter - gibt eine String-Liste der jeweiligen Nummernschilder aus 
         public List<string> GetRentedCars(int lenderID)//DONE
         {
             try
@@ -196,7 +184,7 @@ namespace Carsharing
                 throw exception;
             }
         }
-
+        // Liste mit allen ausgeliehenen Fahrzeugen
         public List<string> GetAllRentedCars()
         {
             try
@@ -221,7 +209,7 @@ namespace Carsharing
             }
 
         }
-        // das hier als vorlage fuer die anderen benutzen
+        // Für alle SQL Befehle
         public void executeSqlString(string SqlString)
         {
             try
