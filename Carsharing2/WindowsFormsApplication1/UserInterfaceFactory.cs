@@ -14,7 +14,7 @@ namespace Carsharing
 				interfaceSelection = new Tui();
 				break;
 				case "GUI":
-				interfaceSelection = new Gui();
+				interfaceSelection = new Form1();
 				break;
 				default:
 				throw new Exception("kein gueltiges Interface angegeben");
